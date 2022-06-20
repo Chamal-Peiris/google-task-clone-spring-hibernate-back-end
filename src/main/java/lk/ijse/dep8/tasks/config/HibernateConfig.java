@@ -37,10 +37,11 @@ public class HibernateConfig {
 
     }
     @Bean
-    public DataSource dataSource(){
+    public JndiObjectFactoryBean dataSource(){
         JndiObjectFactoryBean jndiDataSource = new JndiObjectFactoryBean();
         jndiDataSource.setJndiName("java:comp/env/jdbc/pool");
-        return (DataSource) jndiDataSource.getObject();
+        jndiDataSource.setResourceRef(true);
+        return jndiDataSource;
 
     }
 

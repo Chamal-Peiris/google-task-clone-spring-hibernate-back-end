@@ -7,4 +7,6 @@ import javax.persistence.EntityManager;
 public interface SuperDAO {
 
 
+    Session getSession();
+
 }

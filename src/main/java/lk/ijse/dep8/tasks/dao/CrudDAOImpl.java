@@ -2,6 +2,7 @@ package lk.ijse.dep8.tasks.dao;
 
 import lk.ijse.dep8.tasks.entity.SuperEntity;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import javax.persistence.EntityManager;
 import java.io.Serializable;
@@ -12,7 +13,12 @@ import java.util.Optional;
 public abstract class CrudDAOImpl<T extends SuperEntity, ID extends Serializable>
         implements CrudDAO<T, ID> {
 
-    protected Session session;
+    protected SessionFactory sessionFactory;
+
+    @Override
+    public Session getSession() {
+        return sessionFactory.getCurrentSession();
+    }
 
     private final Class<T> entityClsObj;
     protected EntityManager em;
@@ -40,7 +46,7 @@ public abstract class CrudDAOImpl<T extends SuperEntity, ID extends Serializable
 
     @Override
     public Optional<T> findById(ID pk) {
-        T entity = em.find(entityClsObj, pk);
+        T entity = getSession().find(entityClsObj, pk);
         return (entity == null) ? Optional.empty() : Optional.of(entity);
     }
 

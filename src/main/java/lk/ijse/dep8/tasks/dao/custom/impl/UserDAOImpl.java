@@ -4,6 +4,7 @@ import lk.ijse.dep8.tasks.dao.CrudDAOImpl;
 import lk.ijse.dep8.tasks.dao.custom.UserDAO;
 import lk.ijse.dep8.tasks.entity.User;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -18,8 +19,8 @@ import java.util.Optional;
 @Repository
 public class UserDAOImpl extends CrudDAOImpl<User, String> implements UserDAO {
 
-    public UserDAOImpl(Session session) {
-        this.session = session;
+    public UserDAOImpl(SessionFactory session) {
+        this.sessionFactory = session;
     }
 
     @Override
