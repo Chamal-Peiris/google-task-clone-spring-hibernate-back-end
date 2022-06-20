@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.springframework.context.annotation.Scope;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Scope("prototype")
-@Component
+@Repository
 public class UserDAOImpl extends CrudDAOImpl<User, String> implements UserDAO {
 
     public UserDAOImpl(@Nullable EntityManager em) {
