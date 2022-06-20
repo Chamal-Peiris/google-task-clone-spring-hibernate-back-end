@@ -1,4 +1,4 @@
-# Google Tasks Clone - Servlet Back-end
+# Google Tasks Clone - Servlet Back-end  `spring-data-hibernate`
 
 ### REST API Documentation
 [User Service API Reference](https://documenter.getpostman.com/view/2805535/UyxnEkBp) <br>
