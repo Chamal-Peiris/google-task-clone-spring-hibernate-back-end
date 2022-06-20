@@ -16,9 +16,7 @@ public class QueryDAOImpl implements QueryDAO {
 
     private Session session;
 
-    public QueryDAOImpl(@Nullable Session session) {
-        this.session = session;
-    }
+
 
     @Override
     public CustomEntity getTaskListInformation(int taskListId) {
@@ -27,8 +25,5 @@ public class QueryDAOImpl implements QueryDAO {
                 .setParameter(1, taskListId).uniqueResult();
     }
 
-    @Override
-    public void setSession(Session session) {
-        this.session = session;
-    }
+
 }

@@ -15,7 +15,7 @@ import javax.persistence.EntityManager;
 @Repository
 public class TaskDAOImpl extends CrudDAOImpl<Task, Integer> implements TaskDAO {
 
-    public TaskDAOImpl(@Nullable EntityManager em) {
-        this.em = em;
+    public TaskDAOImpl(Session session) {
+        this.session = session;
     }
 }

@@ -12,6 +12,7 @@ import java.util.Optional;
 public abstract class CrudDAOImpl<T extends SuperEntity, ID extends Serializable>
         implements CrudDAO<T, ID> {
 
+    protected Session session;
 
     private final Class<T> entityClsObj;
     protected EntityManager em;
@@ -20,10 +21,7 @@ public abstract class CrudDAOImpl<T extends SuperEntity, ID extends Serializable
         entityClsObj = (Class<T>) (((ParameterizedType) (this.getClass().getGenericSuperclass())).getActualTypeArguments()[0]);
     }
 
-    @Override
-    public void setEntityManager(EntityManager entityManager) {
-        this.em = entityManager;
-    }
+
 
     @Override
     public boolean existsById(ID pk) {
