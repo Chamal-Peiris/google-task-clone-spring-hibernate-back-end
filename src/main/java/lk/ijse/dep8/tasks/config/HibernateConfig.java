@@ -1,12 +1,16 @@
 package lk.ijse.dep8.tasks.config;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jndi.JndiObjectFactoryBean;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -23,6 +27,7 @@ public class HibernateConfig {
         this.env=env;
     }
 
+    @Bean
     public LocalSessionFactoryBean sessionFactory(DataSource ds){
         LocalSessionFactoryBean lsfb = new LocalSessionFactoryBean();
         lsfb.setDataSource(ds);
@@ -44,5 +49,10 @@ public class HibernateConfig {
         props.put("hibernate.dialect",env.getRequiredProperty("hibernate.dialect"));
         props.put("hibernate.allow_refresh_detached_entity",env.getRequiredProperty("hibernate.allow_refresh_detached_entity"));
         return props;
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager(SessionFactory sf){
+       return new HibernateTransactionManager(sf);
     }
 }
